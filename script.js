@@ -1,4 +1,4 @@
-function sendMessage() {
+async function sendMessage() {
     let inputField = document.getElementById("user-input");
     let message = inputField.value;
     if (!message.trim()) return;
@@ -7,22 +7,24 @@ function sendMessage() {
     chatBox.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
     inputField.value = "";
     
-    setTimeout(() => {
-        let response = generateResponse(message);
-        chatBox.innerHTML += `<p><strong>AI:</strong> ${response}</p>`;
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }, 1000);
+    let response = await generateResponse(message);
+    chatBox.innerHTML += `<p><strong>AI:</strong> ${response}</p>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-function generateResponse(input) {
-    let lowered = input.toLowerCase();
-    if (lowered.includes("ugly")) {
-        return "Yes, yes you are. But at least you’re self-aware!";
-    } else if (lowered.includes("tired")) {
-        return "Maybe sleep instead of talking to an AI?";
-    } else if (lowered.includes("sad")) {
-        return "Aww, poor you. Life is tough, isn't it?";
-    } else {
-        return "Wow, that’s a problem. Maybe try fixing it?";
-    }
+async function generateResponse(input) {
+    let response = await fetch("https://api.openai.com/v1/engines/text-davinci-003/completions", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer YOUR_OPENAI_API_KEY"
+        },
+        body: JSON.stringify({
+            prompt: `You are an honest and sarcastic therapist. Respond to: "${input}"`,
+            max_tokens: 50
+        })
+    });
+    
+    let data = await response.json();
+    return data.choices[0].text.trim();
 }
