@@ -17,7 +17,7 @@ async function generateResponse(input) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer YOUR_OPENAI_API_KEY"
+            "Authorization": "Bearer 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"
         },
         body: JSON.stringify({
             prompt: `You are an honest and sarcastic therapist. Respond to: "${input}"`,
