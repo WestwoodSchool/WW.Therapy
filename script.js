@@ -4,11 +4,12 @@ async function sendMessage() {
     if (!message.trim()) return;
     
     let chatBox = document.getElementById("chat-box");
-    chatBox.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
+    chatBox.innerHTML += `<p class='user'><strong>You:</strong> ${message}</p>`;
     inputField.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
     
     let response = await generateResponse(message);
-    chatBox.innerHTML += `<p><strong>AI:</strong> ${response}</p>`;
+    chatBox.innerHTML += `<p class='ai'><strong>AI:</strong> ${response}</p>`;
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
@@ -22,8 +23,10 @@ async function generateResponse(input) {
             },
             body: JSON.stringify({
                 model: "gpt-3.5-turbo",
-                messages: [{role: "system", content: "You are a brutally honest and sarcastic therapist."},
-                           {role: "user", content: input}],
+                messages: [
+                    {role: "system", content: "You are a brutally honest and sarcastic therapist."},
+                    {role: "user", content: input}
+                ],
                 max_tokens: 200
             })
         });
@@ -40,3 +43,10 @@ async function generateResponse(input) {
         return "Oops, something went wrong. Try again later!";
     }
 }
+
+// Event listener for Enter key press
+document.getElementById("user-input").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+});
