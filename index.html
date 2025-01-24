@@ -3,17 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brutally Honest AI Therapist</title>
+    <title>Cruel Therapist</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="chat-container">
-        <h1>Brutally Honest AI Therapist</h1>
-        <div class="chat-box" id="chat-box"></div>
-        <div class="input-area">
-            <input type="text" id="user-input" placeholder="Tell me your problems..." onkeydown="if(event.key === 'Enter') sendMessage()">
-            <button onclick="sendMessage()">Send</button>
+        <div class="profile">
+            <img src="profile.png" alt="Profile Picture">
+            <h2>Cruel Therapist</h2>
+            <p>Therapist that is brutally honest and lacks empathy</p>
         </div>
+        <div class="chat-box" id="chat-box">
+            <p class='ai'><strong>Cruel Therapist:</strong> Tell me what's your problem.</p>
+        </div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Type your message here..." onkeydown="if(event.key === 'Enter') sendMessage()">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+        <p class="disclaimer">This is A.I. and not a real person. Treat everything it says as fiction.</p>
     </div>
     <script src="script.js"></script>
 </body>
