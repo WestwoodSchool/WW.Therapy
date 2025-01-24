@@ -38,19 +38,19 @@ const responses = {
 
 // Adding more responses to reach 300 unique lines
 for (let i = 1; i <= 250; i++) {
-    responses["random question " + i] = "Here's a honest answer for you: response " + i;
+    responses[`random question ${i}`] = `Here's a brutally honest answer for you: response ${i}`;
 }
 
 async function sendMessage() {
     let inputField = document.getElementById("user-input");
     let message = inputField.value.toLowerCase().trim();
     if (!message) return;
-    
+
     let chatBox = document.getElementById("chat-box");
     chatBox.innerHTML += `<p class='user'><strong>You:</strong> ${message}</p>`;
     inputField.value = "";
     chatBox.scrollTop = chatBox.scrollHeight;
-    
+
     let response = generateResponse(message);
     chatBox.innerHTML += `<p class='ai'><strong>Therapist:</strong> ${response}</p>`;
     chatBox.scrollTop = chatBox.scrollHeight;
