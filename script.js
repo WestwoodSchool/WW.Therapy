@@ -33,13 +33,30 @@ const responses = {
     "i feel like giving up": "Try not to. Or do. I'm just a chatbot.",
     "why is life unfair": "Because that's just how it is.",
     "i need help": "Well, I'm not a therapist, but go ahead.",
-    "what should i do": "Figure it out. I'm not your life coach."
+    "what should i do": "Figure it out. I'm not your life coach.",
+    "why is everything so hard": "Because nothing good comes easy.",
+    "how do i find happiness": "Lower your expectations.",
+    "why is everyone so annoying": "Maybe it's you? Just a thought.",
+    "how do i stop procrastinating": "Just start. Revolutionary, I know.",
+    "i hate people": "People probably feel the same about you.",
+    "why am i always tired": "Try sleeping at night instead of scrolling.",
+    "do you think i'm smart": "Compared to what? A rock?",
+    "why am i always unlucky": "Luck favors those who do something about it.",
+    "i feel empty": "Maybe fill yourself with something meaningful?",
+    "i'm overthinking": "Stop. There. Problem solved.",
+    "how do i get over my ex": "Delete their number. Move on.",
+    "how do i become better": "Try doing the opposite of what got you here.",
+    "i'm scared": "Of what? Facing reality?",
+    "how do i stop being lazy": "Get up and do something, maybe?",
+    "why do bad things always happen to me": "You're not special. Bad things happen to everyone.",
+    "how do i be more confident": "Fake it till you make it.",
+    "how do i be happy alone": "Enjoy your own company. Or get a cat.",
+    "i'm feeling anxious": "Deep breaths. Or don't. I'm not a doctor.",
+    "how do i improve myself": "One step at a time. Or a complete personality reboot.",
+    "why do i keep failing": "Maybe stop doing whatever got you here.",
+    "why does life suck": "It's not all bad. Just mostly.",
+    "how do i become successful": "Define success first. Then chase it."
 };
-
-// Adding more responses to reach 300 unique lines
-for (let i = 1; i <= 250; i++) {
-    responses[`random question ${i}`] = `Here's a brutally honest answer for you: response ${i}`;
-}
 
 async function sendMessage() {
     let inputField = document.getElementById("user-input");
@@ -62,7 +79,7 @@ function generateResponse(input) {
             return responses[key];
         }
     }
-    return responses[Object.keys(responses)[Math.floor(Math.random() * Object.keys(responses).length)]];
+    return "I have no response to that, but you should probably reflect on it.";
 }
 
 // Event listener for Enter key press
