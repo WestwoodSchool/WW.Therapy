@@ -14,32 +14,29 @@ async function sendMessage() {
 }
 
 async function generateResponse(input) {
-    try {
-        let response = await fetch("https://api.openai.com/v1/chat/completions", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer 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"
-            },
-            body: JSON.stringify({
-                model: "gpt-3.5-turbo",
-                messages: [
-                    {role: "system", content: "You are a brutally honest and sarcastic therapist."},
-                    {role: "user", content: input}
-                ],
-                max_tokens: 200
-            })
-        });
+    let response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer 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"
+        },
+        body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [
+                {role: "system", content: "You are a brutally honest and sarcastic therapist."},
+                {role: "user", content: input}
+            ],
+            max_tokens: 200
+        })
+    });
 
-        if (!response.ok) {
-            let errorText = await response.text();
-            throw new Error(`API Error: ${response.status} ${response.statusText} - ${errorText}`);
-        }
-
-        let data = await response.json();
-        return data.choices[0]?.message?.content.trim() || "No response from AI.";
-    } catch (error) {
-        console.error("Error fetching AI response:", error);
-        return "Oops, something went wrong. Try again later!";
-    }
+    let data = await response.json();
+    return data.choices[0]?.message?.content.trim();
 }
+
+// Event listener for Enter key press
+document.getElementById("user-input").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+});
