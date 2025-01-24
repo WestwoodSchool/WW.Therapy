@@ -18,7 +18,7 @@ async function generateResponse(input) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer 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"
+            "Authorization": "Bearer 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"
         },
         body: JSON.stringify({
             model: "gpt-3.5-turbo",
