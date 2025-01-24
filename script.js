@@ -9,7 +9,7 @@ async function sendMessage() {
     chatBox.scrollTop = chatBox.scrollHeight;
     
     let response = await generateResponse(message);
-    chatBox.innerHTML += `<p class='ai'><strong>AI:</strong> ${response}</p>`;
+    chatBox.innerHTML += `<p class='ai'><strong>Cruel Therapist:</strong> ${response}</p>`;
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
@@ -43,10 +43,3 @@ async function generateResponse(input) {
         return "Oops, something went wrong. Try again later!";
     }
 }
-
-// Event listener for Enter key press
-document.getElementById("user-input").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        sendMessage();
-    }
-});
