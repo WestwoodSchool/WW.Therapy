@@ -45,12 +45,12 @@ async function sendMessage() {
     let inputField = document.getElementById("user-input");
     let message = inputField.value.toLowerCase().trim();
     if (!message) return;
-
+    
     let chatBox = document.getElementById("chat-box");
     chatBox.innerHTML += `<p class='user'><strong>You:</strong> ${message}</p>`;
     inputField.value = "";
     chatBox.scrollTop = chatBox.scrollHeight;
-
+    
     let response = generateResponse(message);
     chatBox.innerHTML += `<p class='ai'><strong>Therapist:</strong> ${response}</p>`;
     chatBox.scrollTop = chatBox.scrollHeight;
@@ -62,7 +62,7 @@ function generateResponse(input) {
             return responses[key];
         }
     }
-    return "Hmmm... I'm too honest to even respond to that one.";
+    return responses[Object.keys(responses)[Math.floor(Math.random() * Object.keys(responses).length)]];
 }
 
 // Event listener for Enter key press
