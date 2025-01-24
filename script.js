@@ -14,7 +14,7 @@ async function sendMessage() {
 
 async function generateResponse(input) {
     try {
-        let response = await fetch("https://api.openai.com/v1/completions", {
+        let response = await fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -29,7 +29,8 @@ async function generateResponse(input) {
         });
 
         if (!response.ok) {
-            throw new Error(`API Error: ${response.status} ${response.statusText}`);
+            let errorText = await response.text();
+            throw new Error(`API Error: ${response.status} ${response.statusText} - ${errorText}`);
         }
 
         let data = await response.json();
